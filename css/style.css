@@ -307,7 +307,7 @@ BOTÕES
   font-family: var(--title-font-family); 
   font-size: var(--menu-font-size);
   font-weight: var(--font-weight-medium);
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
   letter-spacing: 0.5px;
   position: relative;
   padding-top: 15px;
@@ -514,6 +514,10 @@ BOTÕES
 
 .social-share .bi-bookmark:hover {
   color: var(--secondary-color);
+}
+
+.bg-geral {
+  background-color: #076413;
 }
 
 .bg-1fase {
@@ -766,4 +770,16 @@ BOTÕES
 }
 
 
+/*-----------------------------
+      DOCUMENTOS OFICIAIS      
+-----------------------------*/
 
+.doc_oficiais {
+  text-align: center;
+  font-size: 22.5px;
+  border-top: #e1e1e1 0.25px solid;
+  border-bottom: #e1e1e1 0.25px solid;
+  margin-top: 50px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}

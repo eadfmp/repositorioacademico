@@ -1,14 +1,40 @@
+function tutoria(curso) {
+
+    var curso_id = curso.id;
+    var curso_id = curso_id + "_row";
+
+    document.getElementById('administracao_tutoria_row').style.display='none';
+    document.getElementById('ads_tutoria_row').style.display='none';
+    document.getElementById('pedagogia_tutoria_row').style.display='none';
+    document.getElementById('processos_tutoria_row').style.display='none';
+    document.getElementById('pos_tutoria_row').style.display='none';
+
+    document.getElementById(curso_id).style.display='';
+}
+
+
+
 document.getElementById('course').addEventListener('change', function() {
     const phaseSelect = document.getElementById('phase');
     phaseSelect.innerHTML = '<option value="" disabled selected>Selecione a fase</option>';
 
     const phases = {
         ads: ['1ª Fase', '2ª Fase', '3ª Fase', '4ª Fase', '5ª Fase'],
+        processos: ['1ª Fase', '2ª Fase', '3ª Fase', '4ª Fase'],
         other: ['1ª Fase', '2ª Fase', '3ª Fase', '4ª Fase', '5ª Fase', '6ª Fase', '7ª Fase', '8ª Fase']
     };
 
     const selectedCourse = this.value;
-    const options = selectedCourse === 'ads' ? phases.ads : phases.other;
+    if (selectedCourse == 'ads'){
+        var options = phases.ads;
+    } else {
+    if (selectedCourse == 'processos') {
+            var options = phases.processos;
+        } else {
+            var options = phases.other
+        }   
+    }
+    //const options = selectedCourse === 'ads' ? phases.ads : phases.other;
 
     options.forEach((phase, index) => {
         const option = document.createElement('option');
@@ -20,7 +46,7 @@ document.getElementById('course').addEventListener('change', function() {
 
 document.getElementById('searchForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevenir o envio padrão do formulário
-    
+
     const course = document.getElementById("course").value;
     const phase = document.getElementById("phase").value;
 
@@ -61,11 +87,16 @@ document.getElementById('searchForm').addEventListener('submit', function(event)
         let anyVisible = false;
 
         softwareCards.forEach(card => {
+            // Esconder todos os cartões antes de verificar a fase selecionada
+            card.style.display = 'none';
+        });
+
+        softwareCards.forEach(card => {
             const badge = card.querySelector('.badge');
             console.log(`Verificando o cartão: ${card.querySelector('h5').textContent}, badge: ${badge ? badge.textContent : 'nenhuma'}`);
 
             // Verifica se deve mostrar todos os cartões ou apenas os da fase selecionada
-            if (phase === 'todas' || (badge && badge.classList.contains(`bg-${phase}`))) {
+            if (phase === 'todas' || (badge && badge.classList.contains(`bg-${phase}`)) || (badge && badge.classList.contains('bg-geral'))) {
                 card.style.display = 'block';
                 anyVisible = true;
             } else {
